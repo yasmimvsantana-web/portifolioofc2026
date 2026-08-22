@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfólio 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#121018;
+    --card:#1C1926;
+    --card2:#211D2E;
+    --pink:#FF3D8A;
+    --purple:#8B6BFF;
+    --cyan:#4DD9E8;
+    --cream:#F4EFE4;
+    --muted:#B7B1C4;
+    --line: rgba(244,239,228,0.10);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(circle at 15% 8%, rgba(139,107,255,0.16), transparent 40%),
+      radial-gradient(circle at 90% 15%, rgba(255,61,138,0.14), transparent 45%),
+      var(--bg);
+    color:var(--cream);
+    font-family:'Poppins', sans-serif;
+    min-height:100vh;
+  }
+  h1,h2,h3{font-family:'Baloo 2', sans-serif; margin:0;}
+  a{color:inherit; text-decoration:none;}
+
+  .page{ display:none; min-height:100vh; }
+  .page.active{ display:block; }
+
+  .nav{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:18px 26px; max-width:1080px; margin:0 auto;
+    font-family:'Space Mono', monospace; font-size:12px;
+  }
+  .nav .brand{ color:var(--pink); font-weight:700; letter-spacing:.04em; }
+  .nav .links{ display:flex; gap:10px; align-items:center; }
+  .nav .links a, .nav .links button{
+    background:transparent; border:1px solid var(--line); color:var(--cream);
+    padding:8px 13px; border-radius:20px; cursor:pointer;
+    letter-spacing:.03em; text-transform:uppercase; font-family:'Space Mono', monospace; font-size:11px;
+  }
+  .nav .links a:hover, .nav .links button:hover{ background:rgba(244,239,228,0.08); border-color:var(--purple); }
+  .role-tag{ padding:7px 12px; border-radius:20px; background:var(--pink); color:#fff; font-weight:700; display:none; }
+  .role-tag.show{ display:inline-block; }
+
+  #page-gate .hero{ text-align:center; padding:90px 20px 50px; max-width:900px; margin:0 auto; }
+  #page-gate h1{
+    font-size:clamp(48px, 10vw, 108px); line-height:0.95; font-weight:800;
+    background:linear-gradient(90deg, var(--pink), var(--purple) 60%, var(--cyan));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    text-shadow: 0 0 60px rgba(139,107,255,0.35); letter-spacing:-0.01em;
+    animation:nameEntrance 1.2s cubic-bezier(.22,1,.36,1) both, nameGlow 3s ease-in-out 1.2s infinite alternate;
+  }
+  @keyframes nameEntrance{
+    from{ opacity:0; transform:translateY(28px) scale(.94); filter:blur(8px); }
+    to{ opacity:1; transform:translateY(0) scale(1); filter:blur(0); }
+  }
+  @keyframes nameGlow{
+    from{ text-shadow:0 0 28px rgba(255,61,138,0.28); }
+    to{ text-shadow:0 0 62px rgba(77,217,232,0.42); }
+  }
+  @media(prefers-reduced-motion:reduce){
+    #page-gate h1{ animation:none; }
+  }
+  #page-gate .hero-tag{
+    font-family:'Space Mono', monospace; font-size:13px; letter-spacing:.28em; text-transform:uppercase;
+    color:var(--muted); margin-top:14px;
+  }
+  #page-gate .sub{ color:var(--muted); font-size:16px; max-width:520px; margin:26px auto 0; line-height:1.6; }
+  .gate-cards{ display:grid; grid-template-columns:1fr 1fr; gap:18px; max-width:760px; margin:46px auto 0; padding:0 20px 60px; }
+  @media(max-width:640px){ .gate-cards{grid-template-columns:1fr;} }
+  .gate-card{
+    background:var(--card); border:1px solid var(--line); border-radius:22px; padding:28px;
+    text-align:left; transition:border-color .15s, transform .15s; cursor:pointer;
+  }
+  .gate-card:hover{ border-color:var(--purple); transform:translateY(-3px); }
+  .gate-card .tag2{
+    font-family:'Space Mono', monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--pink); margin-bottom:10px; display:block;
+  }
+  .gate-card h2{ font-size:22px; margin-bottom:8px; }
+  .gate-card p{ color:var(--muted); font-size:13px; line-height:1.6; margin:0; }
+  .gate-visit{ display:block; text-align:center; font-family:'Space Mono', monospace; font-size:12px; color:var(--muted); padding-bottom:70px; }
+  .gate-visit span{ color:var(--cyan); text-decoration:underline; cursor:pointer; }
+
+  .login-wrap{ max-width:420px; margin:0 auto; padding:100px 24px 60px; text-align:center; }
+  .login-wrap .tag2{
+    font-family:'Space Mono', monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--cyan); margin-bottom:14px; display:block;
+  }
+  .login-wrap h1{ font-size:32px; margin-bottom:12px; }
+  .login-wrap p{ color:var(--muted); font-size:14px; line-height:1.7; margin-bottom:30px; }
+  .big-enter{
+    width:100%; font-family:'Space Mono', monospace; font-size:14px; text-transform:uppercase;
+    background:linear-gradient(90deg, var(--pink), var(--purple)); color:#fff; border:none;
+    padding:16px; border-radius:26px; cursor:pointer; letter-spacing:.05em;
+  }
+  .pass-input{
+    width:100%; background:var(--card2); border:1px solid var(--line); color:var(--cream);
+    font-family:'Space Mono', monospace; font-size:16px; padding:14px 16px; border-radius:14px;
+    text-align:center; letter-spacing:.3em; margin-bottom:14px;
+  }
+  .pass-input:focus{ outline:none; border-color:var(--purple); }
+  .error-msg{ color:var(--pink); font-family:'Space Mono', monospace; font-size:12px; margin-top:14px; display:none; }
+  .error-msg.show{ display:block; }
+  .back-link{
+    display:inline-block; margin-top:26px; font-family:'Space Mono', monospace; font-size:11px;
+    color:var(--muted); text-decoration:underline; cursor:pointer;
+  }
+
+  .wrap{max-width:1080px; margin:0 auto; padding:0 18px 90px;}
+  .banner{ text-align:center; padding:50px 20px 34px; max-width:900px; margin:0 auto; }
+  .banner .eyebrow{
+    font-family:'Space Mono', monospace; font-size:11px; letter-spacing:.3em; text-transform:uppercase;
+    color:var(--cyan); margin-bottom:14px;
+  }
+  .banner h1{
+    font-size:clamp(40px, 8vw, 84px); line-height:0.92; font-weight:800;
+    background:linear-gradient(90deg, var(--pink), var(--purple) 60%, var(--cyan));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    text-shadow: 0 0 50px rgba(139,107,255,0.30);
+  }
+
+  .header-card{
+    background:var(--card); border:1px solid var(--line); border-radius:22px; padding:26px;
+    display:grid; grid-template-columns:220px 1fr auto; gap:26px; align-items:start; margin-bottom:18px;
+  }
+  @media(max-width:800px){ .header-card{grid-template-columns:1fr;} }
+  .photo-frame{
+    width:100%; aspect-ratio:1/1.05; border-radius:18px; background:var(--card2); overflow:hidden;
+    position:relative; border:2px solid var(--purple);
+  }
+  .photo-frame img{width:100%; height:100%; object-fit:cover; display:none;}
+  .photo-frame img.show{display:block;}
+  .photo-placeholder{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center;
+    padding:16px; font-family:'Space Mono',monospace; font-size:11px; color:var(--muted); line-height:1.6;
+  }
+  .upload-btn{
+    display:none; margin-top:10px; width:100%; font-family:'Space Mono', monospace; font-size:11px;
+    background:var(--purple); color:#fff; border:none; padding:9px; border-radius:10px; cursor:pointer; text-transform:uppercase;
+  }
+  .upload-btn.show{display:block;}
+  .header-main .tag{
+    display:inline-block; font-family:'Space Mono', monospace; font-size:11px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--pink); border:1px solid var(--pink); padding:4px 10px; border-radius:20px; margin-bottom:14px;
+  }
+  .header-main h2{ font-size:clamp(28px,5vw,42px); font-weight:800; line-height:1; color:var(--cream); margin-bottom:6px; }
+  .header-main .curso{ font-family:'Space Mono', monospace; font-size:13px; color:var(--cyan); margin-bottom:14px; }
+  #bioText{ color:var(--muted); font-size:14.5px; line-height:1.7; max-width:520px; }
+  #bioText[contenteditable="true"], #nameText[contenteditable="true"]{
+    outline:1px dashed var(--purple); padding:8px; border-radius:8px; background:rgba(139,107,255,0.06);
+  }
+  .contacts{ display:flex; flex-direction:column; gap:10px; font-family:'Space Mono', monospace; font-size:12px; min-width:190px; }
+  .contacts .pill{ background:var(--card2); border:1px solid var(--line); border-radius:12px; padding:9px 12px; color:var(--cream); display:flex; gap:8px; align-items:center; }
+  .contacts .pill b{color:var(--pink);}
+  .contacts .pill[contenteditable="true"]{outline:1px dashed var(--purple);}
+
+  .row2{ display:grid; grid-template-columns:1.15fr 1fr; gap:18px; margin-bottom:18px; }
+  @media(max-width:800px){ .row2{grid-template-columns:1fr;} }
+  .card{ background:var(--card); border:1px solid var(--line); border-radius:22px; padding:24px; }
+  .card-title{
+    font-family:'Space Mono', monospace; font-size:12px; text-transform:uppercase; letter-spacing:.14em;
+    color:var(--muted); margin-bottom:14px; display:flex; align-items:center; gap:10px;
+  }
+  .card-title::after{content:""; flex:1; height:1px; background:var(--line);}
+  .about-card{ background:linear-gradient(135deg, rgba(255,61,138,0.20), rgba(139,107,255,0.20)); border:1px solid rgba(255,255,255,0.08); }
+  .about-card h2{ font-size:34px; color:var(--cream); margin-bottom:12px; }
+  #porqueText{ color:var(--cream); font-size:15px; line-height:1.75; opacity:.92; }
+  #porqueText[contenteditable="true"]{outline:1px dashed #fff; padding:8px; border-radius:8px;}
+  .pill-tag{
+    display:inline-block; background:var(--card2); border:1px solid var(--purple); color:var(--cream);
+    font-family:'Space Mono', monospace; font-size:12px; padding:8px 14px; border-radius:20px; margin:0 8px 8px 0;
+  }
+  #skillsText[contenteditable="true"], #softwareText[contenteditable="true"]{
+    outline:1px dashed var(--purple); padding:10px; border-radius:10px; display:block; font-family:'Space Mono',monospace; font-size:12px; color:var(--muted);
+  }
+  .estudos{ margin-top:18px; }
+  .estudos h3{ font-size:20px; margin-bottom:4px; }
+  #estudosText{ color:var(--muted); font-size:13px; font-family:'Space Mono', monospace; }
+  #estudosText[contenteditable="true"]{outline:1px dashed var(--purple); padding:8px; border-radius:8px;}
+  .section-title{ font-size:30px; margin:6px 0 16px; color:var(--cream); }
+
+  .trimestres{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:18px; }
+  @media(max-width:800px){ .trimestres{grid-template-columns:1fr;} }
+  .tri-card{
+    background:linear-gradient(145deg, rgba(255,61,138,0.22), rgba(139,107,255,0.20) 58%, rgba(77,217,232,0.18));
+    border:1px solid rgba(244,239,228,0.18); border-radius:20px; padding:32px 28px; aspect-ratio:1/1;
+    min-height:250px; display:flex; flex-direction:column; justify-content:center;
+    cursor:pointer; transition:border-color .15s, transform .15s;
+  }
+  .tri-card:hover{ border-color:var(--purple); transform:translateY(-3px); }
+  .tri-card .num{
+    font-family:'Space Mono', monospace; font-size:12px; color:var(--pink); letter-spacing:.1em; text-transform:uppercase; margin-bottom:8px; display:block;
+  }
+  .tri-card h3{
+    font-size:clamp(24px,3vw,32px); margin-bottom:12px;
+    background:linear-gradient(90deg, var(--pink), var(--purple) 60%, var(--cyan));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .tri-card p{ color:var(--muted); font-size:14px; line-height:1.6; margin:0; }
+
+  .subjects{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-bottom:24px; }
+  @media(max-width:700px){ .subjects{grid-template-columns:1fr;} }
+  .subject-card{
+    background:var(--card2); border:1px solid var(--line); border-radius:18px; padding:20px;
+    cursor:default; transition:border-color .15s, transform .15s;
+  }
+  .subject-card.editable{ cursor:pointer; }
+  .subject-card.editable:hover{ border-color:var(--purple); transform:translateY(-2px); }
+  .subject-card h3{ font-size:17px; margin-bottom:8px; color:var(--cream); }
+  .subject-hint{ color:var(--muted); font-size:12.5px; font-family:'Space Mono', monospace; line-height:1.6; }
+  .subject-count{
+    display:inline-block; margin-top:10px; font-family:'Space Mono', monospace; font-size:11px;
+    background:var(--pink); color:#fff; padding:4px 10px; border-radius:12px;
+  }
+
+  .row2 .card h3{ font-size:22px; margin-bottom:14px; color:var(--cream); }
+  .lang-row{ margin-bottom:14px; }
+  .lang-row .lang-label{ font-family:'Space Mono', monospace; font-size:12px; color:var(--muted); margin-bottom:6px; }
+  .lang-bar{ background:var(--card2); border-radius:20px; overflow:hidden; height:20px; }
+  .lang-fill{ background:linear-gradient(90deg, var(--pink), var(--purple)); height:100%; display:flex; align-items:center; justify-content:flex-end; padding-right:10px; font-family:'Space Mono', monospace; font-size:10px; color:#fff; }
+  .save-bar{ text-align:center; margin-top:20px; }
+  .save-btn{
+    display:none; font-family:'Space Mono', monospace; font-size:13px; background:var(--pink); color:#fff;
+    border:none; padding:12px 26px; border-radius:24px; cursor:pointer; text-transform:uppercase; letter-spacing:.05em;
+  }
+  .save-btn.show{display:inline-block;}
+  .save-msg{ font-family:'Space Mono', monospace; font-size:11px; color:var(--cyan); margin-left:10px; opacity:0; transition:opacity .3s;}
+  .save-msg.show{opacity:1;}
+  .footer-note{
+    max-width:1080px; margin:50px auto 0; text-align:center; font-family:'Space Mono', monospace;
+    font-size:11px; color:var(--muted); opacity:.5; padding-bottom:20px;
+  }
+  .tri-page-title{ text-align:center; padding:40px 20px 10px; }
+  .tri-page-title .tag2{ font-family:'Space Mono', monospace; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--pink); }
+  .tri-page-title h1{ font-size:clamp(32px,6vw,54px); color:var(--cream); margin-top:8px; }
+
+  /* ---------- modal (quadro de atividades) ---------- */
+  .modal-overlay{
+    display:none; position:fixed; inset:0; background:rgba(8,7,12,0.75); z-index:100;
+    align-items:center; justify-content:center; padding:20px;
+  }
+  .modal-overlay.show{ display:flex; }
+  .modal-panel{
+    background:var(--card); border:1px solid var(--line); border-radius:22px; padding:26px;
+    max-width:860px; width:100%; max-height:88vh; overflow-y:auto;
+  }
+  .modal-header{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; }
+  .modal-header h2{ font-size:24px; color:var(--cream); margin-top:4px; }
+  .modal-close{
+    background:var(--card2); border:1px solid var(--line); color:var(--cream); border-radius:50%;
+    width:34px; height:34px; cursor:pointer; font-size:14px;
+  }
+  .activity-card{ background:var(--card2); border:1px solid var(--line); border-radius:18px; padding:22px; margin-bottom:16px; display:grid; grid-template-columns:1fr 1fr; gap:22px; align-items:start; }
+  .activity-side{ min-width:0; }
+  .activity-photos{ position:relative; margin-bottom:14px; }
+  .activity-photos img{ width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:12px; display:block; }
+  .photo-nav{
+    position:absolute; top:50%; transform:translateY(-50%); width:34px; height:34px;
+    border:1px solid rgba(255,255,255,0.35); border-radius:50%; background:rgba(18,16,24,0.72);
+    color:var(--cream); cursor:pointer; font-size:20px; line-height:1;
+  }
+  .photo-nav:hover{ background:var(--pink); }
+  .photo-nav.prev{ left:10px; }
+  .photo-nav.next{ right:10px; }
+  .photo-position{ text-align:center; color:var(--muted); font-family:'Space Mono',monospace; font-size:10px; margin-top:7px; }
+  .activity-desc{ font-size:16px; color:var(--cream); line-height:1.7; margin:0; }
+  .activity-title{ font-size:22px; color:var(--cream); line-height:1.2; margin:0 0 12px; }
+  .activity-link{ display:inline-block; margin-top:16px; color:var(--cyan); font-family:'Space Mono',monospace; font-size:12px; text-decoration:underline; overflow-wrap:anywhere; }
+  .activity-media{ margin-top:18px; }
+  .activity-media-label{ color:var(--muted); font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:7px; }
+  .activity-media iframe{ width:100%; aspect-ratio:16/9; border:1px solid var(--line); border-radius:12px; background:var(--bg); display:block; }
+  .activity-media-link{ color:var(--cyan); font-family:'Space Mono',monospace; font-size:12px; text-decoration:underline; overflow-wrap:anywhere; }
+  .activity-skills{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+  .activity-skills span{
+    background:rgba(139,107,255,0.18); color:var(--purple); border:1px solid var(--purple);
+    font-family:'Space Mono', monospace; font-size:13px; padding:7px 12px; border-radius:12px;
+  }
+  .activity-delete{
+    background:none; border:none; color:var(--pink); font-family:'Space Mono', monospace; font-size:11px;
+    cursor:pointer; text-decoration:underline; padding:0;
+  }
+  .activity-edit{ margin-right:14px; background:none; border:none; color:var(--cyan); font-family:'Space Mono', monospace; font-size:11px; cursor:pointer; text-decoration:underline; padding:0; }
+  .empty-activities{ color:var(--muted); font-size:13px; text-align:center; padding:20px 0; }
+  .modal-form{ border-top:1px solid var(--line); padding-top:18px; margin-top:6px; }
+  .modal-form label{
+    display:block; font-family:'Space Mono', monospace; font-size:11px; text-transform:uppercase;
+    letter-spacing:.08em; color:var(--muted); margin:12px 0 6px;
+  }
+  .modal-form input[type="file"]{ font-size:12px; color:var(--muted); }
+  .modal-form textarea, .modal-form input[type="text"]{
+    width:100%; background:var(--card2); border:1px solid var(--line); color:var(--cream);
+    font-family:'Poppins', sans-serif; font-size:13.5px; padding:10px 12px; border-radius:10px; resize:vertical;
+  }
+  .modal-form input[type="url"]{
+    width:100%; background:var(--card2); border:1px solid var(--line); color:var(--cream);
+    font-family:'Poppins', sans-serif; font-size:13.5px; padding:10px 12px; border-radius:10px;
+  }
+  .photo-preview{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+  .photo-preview .thumb{ position:relative; width:60px; height:60px; }
+  .photo-preview img{ width:100%; height:100%; object-fit:cover; border-radius:8px; }
+  .photo-preview .rm{
+    position:absolute; top:-6px; right:-6px; width:18px; height:18px; border-radius:50%;
+    background:var(--pink); color:#fff; border:none; font-size:10px; cursor:pointer; line-height:1;
+  }
+  .modal-form .big-enter{ margin-top:16px; }
+  @media(max-width:600px){
+    .modal-panel{ padding:18px; }
+    .activity-card{ padding:16px; grid-template-columns:1fr; gap:16px; }
+    .activity-desc{ font-size:14px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="page active" id="page-gate">
+  <div class="nav">
+    <span class="brand">PORTFÓLIO 2026</span>
+    <div class="links"><a onclick="goTo('portfolio')">Ver portfólio</a></div>
+  </div>
+  <div class="hero">
+    <h1 id="heroName">Yasmim Vieira</h1>
+    <p class="hero-tag">Portfólio 2026</p>
+    <p class="sub">Escolha como você quer entrar no site.</p>
+  </div>
+  <div class="gate-cards">
+    <div class="gate-card" onclick="goTo('professor')">
+      <span class="tag2">Área do Professor</span>
+      <h2>Sou professor(a)</h2>
+      <p>Entre para visualizar o portfólio.</p>
+    </div>
+    <div class="gate-card" onclick="goTo('editor')">
+      <span class="tag2">Área do Editor</span>
+      <h2>Sou editor(a)</h2>
+      <p>acesso restrito, apenas eu ( :</p>
+    </div>
+  </div>
+  <p class="gate-visit"><span onclick="goTo('portfolio')">ou apenas visualizar o portfólio</span></p>
+</section>
+
+<section class="page" id="page-professor">
+  <div class="nav">
+    <span class="brand">PORTFÓLIO 2026</span>
+    <div class="links"><a onclick="goTo('gate')">Voltar</a></div>
+  </div>
+  <div class="login-wrap">
+    <span class="tag2">Área do Professor</span>
+    <h1>Acessar</h1>
+    <p>Entre, visualize e avalie o portfólio. Este acesso é só de visualização, sem edição.</p>
+    <button class="big-enter" onclick="enterAsProfessor()">Entre, visualize e avalie</button>
+    <div class="back-link" onclick="goTo('gate')">voltar ao início</div>
+  </div>
+</section>
+
+<section class="page" id="page-editor">
+  <div class="nav">
+    <span class="brand">PORTFÓLIO 2026</span>
+    <div class="links"><a onclick="goTo('gate')">Voltar</a></div>
+  </div>
+  <div class="login-wrap">
+    <span class="tag2">Área do Editor</span>
+    <h1>Digite a senha</h1>
+    <p>Informe a senha de acesso para liberar a edição.</p>
+    <input type="password" id="editorPass" class="pass-input" placeholder="••••" maxlength="10" inputmode="numeric">
+    <button class="big-enter" onclick="checkEditorPass()">Entrar</button>
+    <p class="error-msg" id="editorError">Senha incorreta. O acesso à edição não foi liberado.</p>
+    <div class="back-link" onclick="goTo('gate')">voltar ao início</div>
+  </div>
+</section>
+
+<section class="page" id="page-portfolio">
+  <div class="nav">
+    <span class="brand">PORTFÓLIO 2026</span>
+    <div class="links">
+      <span class="role-tag" id="roleTag"></span>
+      <a onclick="goTo('gate')">Início</a>
+    </div>
+  </div>
+
+  <div class="banner">
+    <p class="eyebrow">Trabalho acadêmico &middot; edição 2026</p>
+    <h1>PORTFOLIO<br>2026</h1>
+  </div>
+
+  <div class="wrap">
+    <div class="header-card">
+      <div>
+        <div class="photo-frame" id="photoFrame">
+          <img id="photoImg" alt="Foto do estudante">
+          <div class="photo-placeholder" id="photoPlaceholder">sem foto ainda<br>entre como editor para adicionar</div>
+        </div>
+        <input type="file" id="photoInput" accept="image/*" style="display:none;">
+        <button class="upload-btn" id="uploadBtn">Trocar foto</button>
+      </div>
+
+      <div class="header-main">
+        <span class="tag">Portfólio 2026</span>
+        <h2 id="nameText">Yasmim Vieira</h2>
+        <p class="curso">Estudante &middot; Ensino méd /Tecnico dev</p>
+        <div id="bioText">Escreva aqui um resumo curto sobre você: o que estuda, o que gosta de fazer e o que quer mostrar neste portfólio.</div>
+      </div>
+
+      <div class="contacts">
+        <div class="pill" id="cEmail"><b>@</b> seuemail@exemplo.com</div>
+        <div class="pill" id="cLocal"><b>📍</b> Sua cidade</div>
+        <div class="pill" id="cInsta"><b>IG</b> @seuinstagram</div>
+        
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="card about-card">
+        <div class="card-title">O que eu faço</div>
+        <h2>Olá!</h2>
+        <div id="porqueText">Conte aqui o que você mais gosta de estudar ou criar, como trabalha, e o que te motiva. Fale em primeira pessoa, do seu jeito.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Estudos</div>
+        <div id="estudosText">Nome da escola/curso · Cidade · 2024 / 2026</div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Trimestres</h2>
+    <div class="trimestres">
+      <div class="tri-card" onclick="goTo('trimestre1')">
+        <span class="num">1º Trimestre</span>
+        <h3>Primeiro Trimestre</h3>
+        <p>Veja o que foi produzido em cada matéria.</p>
+      </div>
+      <div class="tri-card" onclick="goTo('trimestre2')">
+        <span class="num">2º Trimestre</span>
+        <h3>Segundo Trimestre</h3>
+        <p>Veja o que foi produzido em cada matéria.</p>
+      </div>
+      <div class="tri-card" onclick="goTo('trimestre3')">
+        <span class="num">3º Trimestre</span>
+        <h3>Terceiro Trimestre</h3>
+        <p>Veja o que foi produzido em cada matéria.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Idiomas</h3>
+      <div class="lang-row">
+        <div class="lang-label">Português</div>
+        <div class="lang-bar"><div class="lang-fill" style="width:100%;">100%</div></div>
+      </div>
+      <div class="lang-row">
+        <div class="lang-label">Inglês</div>
+        <div class="lang-bar"><div class="lang-fill" style="width:60%;">60%</div></div>
+      </div>
+    </div>
+
+    <div class="save-bar">
+      <button class="save-btn" id="saveBtn">Salvar alterações</button>
+      <span class="save-msg" id="saveMsg">salvo!</span>
+    </div>
+
+  </div>
+
+  
+</section>
+
+<section class="page" id="page-trimestre1">
+  <div class="nav">
+    <span class="brand">PORTFÓLIO 2026</span>
+    <div class="links"><span class="role-tag" id="roleTagT1"></span><a onclick="goTo('portfolio')">Voltar</a></div>
+  </div>
+  <div class="tri-page-title"><span class="tag2">1º Trimestre</span><h1>Primeiro Trimestre</h1></div>
+  <div class="wrap" id="subjects-tri1"></div>
+</section>
+
+<section class="page" id="page-trimestre2">
+  <div class="nav">
+    <span class="brand">PORTFÓLIO 2026</span>
+    <div class="links"><span class="role-tag" id="roleTagT2"></span><a onclick="goTo('portfolio')">Voltar</a></div>
+  </div>
+  <div class="tri-page-title"><span class="tag2">2º Trimestre</span><h1>Segundo Trimestre</h1></div>
+  <div class="wrap" id="subjects-tri2"></div>
+</section>
+
+<section class="page" id="page-trimestre3">
+  <div class="nav">
+    <span class="brand">PORTFÓLIO 2026</span>
+    <div class="links"><span class="role-tag" id="roleTagT3"></span><a onclick="goTo('portfolio')">Voltar</a></div>
+  </div>
+  <div class="tri-page-title"><span class="tag2">3º Trimestre</span><h1>Terceiro Trimestre</h1></div>
+  <div class="wrap" id="subjects-tri3"></div>
+</section>
+
+<!-- ============ QUADRO DE ATIVIDADES (modal, apenas editora) ============ -->
+<div class="modal-overlay" id="subjectModal">
+  <div class="modal-panel">
+    <div class="modal-header">
+      <div>
+        <span class="tag2" id="modalTri"></span>
+        <h2 id="modalSubject"></h2>
+      </div>
+      <button class="modal-close" onclick="closeSubjectModal()">✕</button>
+    </div>
+    <div id="modalActivities"></div>
+    <div class="modal-form">
+      <label>Título da atividade</label>
+      <input type="text" id="actTitle" placeholder="Ex: Projeto de sustentabilidade">
+      <label>Link da atividade</label>
+      <input type="url" id="actLink" placeholder="https://exemplo.com/atividade">
+      <label>Vídeo incorporado</label>
+      <input type="url" id="actVideo" placeholder="Link do YouTube ou Vimeo">
+      <label>Apresentação incorporada</label>
+      <input type="url" id="actPresentation" placeholder="Link do Google Slides ou Canva">
+      <label>Fotos da atividade</label>
+      <input type="file" id="actPhotos" accept="image/*" multiple>
+      <div class="photo-preview" id="actPhotoPreview"></div>
+      <label>Descrição</label>
+      <textarea id="actDescription" rows="3" placeholder="Descreva a atividade..."></textarea>
+      <label>Habilidades</label>
+      <input type="text" id="actSkills" placeholder="Ex: criatividade, trabalho em equipe">
+      <button class="big-enter" id="addActivityBtn">Adicionar atividade</button>
+      <button class="back-link" id="cancelActivityEdit" type="button" style="display:none;">cancelar edição</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const EDITOR_PASSWORD = "1234";
+let currentRole = null; // null | 'professor' | 'editor'
+
+const SUBJECTS = [
+  { key:'natureza',   label:'Natureza' },
+  { key:'humanas',    label:'Humanas' },
+  { key:'matematica', label:'Matemática' },
+  { key:'linguagens', label:'Linguagens' },
+  { key:'tecds',       label:'Tec. Desenvolvimento de Sistemas' }
+];
+const TRIMESTERS = ['tri1','tri2','tri3'];
+const TRI_LABELS = { tri1:'1º Trimestre', tri2:'2º Trimestre', tri3:'3º Trimestre' };
+
+TRIMESTERS.forEach(tri => {
+  const wrap = document.getElementById('subjects-' + tri);
+  const grid = document.createElement('div');
+  grid.className = 'subjects';
+  SUBJECTS.forEach(s => {
+    const card = document.createElement('div');
+    card.className = 'subject-card';
+    card.dataset.tri = tri;
+    card.dataset.subject = s.key;
+    card.innerHTML = `
+      <h3>${s.label}</h3>
+      <div class="subject-hint">Faça login como editora para adicionar atividades.</div>
+      <span class="subject-count" style="display:none;"></span>
+    `;
+    card.addEventListener('click', () => {
+      if(currentRole === 'editor' || currentRole === 'professor') openSubjectModal(tri, s.key, s.label);
+    });
+    grid.appendChild(card);
+  });
+  wrap.appendChild(grid);
+});
+
+const editableTextIds = ['nameText','bioText','porqueText','estudosText','cEmail','cLocal','cInsta'];
+
+async function storageGet(key){
+  if(window.storage && typeof window.storage.get === 'function') return window.storage.get(key, true);
+  const value = localStorage.getItem('portfolio:' + key);
+  return value === null ? null : { value };
+}
+
+async function storageSet(key, value){
+  if(window.storage && typeof window.storage.set === 'function') return window.storage.set(key, value, true);
+  localStorage.setItem('portfolio:' + key, value);
+  return true;
+}
+
+const photoImg = document.getElementById('photoImg');
+const photoPlaceholder = document.getElementById('photoPlaceholder');
+const photoInput = document.getElementById('photoInput');
+const uploadBtn = document.getElementById('uploadBtn');
+const heroName = document.getElementById('heroName');
+
+function goTo(pageName){
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + pageName).classList.add('active');
+  window.scrollTo(0,0);
+  applyRoleUI();
+}
+
+function enterAsProfessor(){ currentRole = 'professor'; goTo('portfolio'); refreshAllSubjectCards(); }
+
+function checkEditorPass(){
+  const val = document.getElementById('editorPass').value.trim();
+  const errorEl = document.getElementById('editorError');
+  if(val === EDITOR_PASSWORD){
+    errorEl.classList.remove('show');
+    currentRole = 'editor';
+    goTo('portfolio');
+    refreshAllSubjectCards();
+  }else{
+    errorEl.classList.add('show');
+  }
+}
+
+function applyRoleUI(){
+  const editing = currentRole === 'editor';
+  editableTextIds.forEach(id => document.getElementById(id).contentEditable = editing);
+  document.querySelectorAll('.upload-btn').forEach(el => el.classList.toggle('show', editing));
+  document.getElementById('saveBtn').classList.toggle('show', editing);
+  const label = currentRole === 'professor' ? 'Modo: Professor (visualização)' : (currentRole === 'editor' ? 'Modo: Editor' : '');
+  ['roleTag','roleTagT1','roleTagT2','roleTagT3'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el){ el.classList.toggle('show', !!currentRole); el.textContent = label; }
+  });
+  document.querySelectorAll('.subject-card').forEach(card => {
+    const viewingActivities = editing || currentRole === 'professor';
+    card.classList.toggle('editable', viewingActivities);
+    const hint = card.querySelector('.subject-hint');
+    const count = card.querySelector('.subject-count');
+    if(editing){
+      hint.textContent = 'Clique para adicionar atividades';
+      count.style.display = 'inline-block';
+    }else if(currentRole === 'professor'){
+      hint.textContent = 'Clique para visualizar as atividades';
+      count.style.display = 'inline-block';
+    }else{
+      hint.textContent = 'Faça login como editora para adicionar atividades.';
+      count.style.display = 'none';
+    }
+  });
+}
+
+async function refreshAllSubjectCards(){
+  if(currentRole !== 'editor' && currentRole !== 'professor') return;
+  for(const card of document.querySelectorAll('.subject-card')){
+    const tri = card.dataset.tri, subj = card.dataset.subject;
+    try{
+      const r = await storageGet('activities:'+tri+'-'+subj);
+      const arr = r && r.value ? JSON.parse(r.value) : [];
+      card.querySelector('.subject-count').textContent = arr.length + (arr.length === 1 ? ' atividade' : ' atividades');
+    }catch(e){
+      card.querySelector('.subject-count').textContent = '0 atividades';
+    }
+  }
+}
+
+function renderPills(sourceId, targetId){
+  const text = document.getElementById(sourceId).innerText;
+  const items = text.split(',').map(s=>s.trim()).filter(Boolean);
+  document.getElementById(targetId).innerHTML = items.map(i=>`<span class="pill-tag">${i}</span>`).join('');
+}
+
+async function loadContent(){
+  for(const id of editableTextIds){
+    try{
+      const r = await storageGet('field:'+id);
+      if(r && r.value) document.getElementById(id).innerHTML = r.value;
+    }catch(e){}
+  }
+  try{
+    const foto = await storageGet('foto');
+    if(foto && foto.value){
+      photoImg.src = foto.value;
+      photoImg.classList.add('show');
+      photoPlaceholder.style.display = 'none';
+    }
+  }catch(e){}
+  heroName.innerHTML = document.getElementById('nameText').innerHTML;
+  applyRoleUI();
+}
+
+async function saveAll(){
+  try{
+    for(const id of editableTextIds){
+      await storageSet('field:'+id, document.getElementById(id).innerHTML);
+    }
+    if(photoImg.src && photoImg.src.startsWith('data:')){
+      await storageSet('foto', photoImg.src);
+    }
+    heroName.innerHTML = document.getElementById('nameText').innerHTML;
+    const msg = document.getElementById('saveMsg');
+    msg.classList.add('show');
+    setTimeout(() => msg.classList.remove('show'), 2000);
+  }catch(e){
+    alert('Não foi possível salvar agora. Tente novamente.');
+  }
+}
+
+document.querySelectorAll('.upload-btn').forEach(btn => btn.addEventListener('click', () => photoInput.click()));
+photoInput.addEventListener('change', () => {
+  const file = photoInput.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    photoImg.src = reader.result;
+    photoImg.classList.add('show');
+    photoPlaceholder.style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+});
+document.getElementById('saveBtn').addEventListener('click', saveAll);
+document.getElementById('editorPass').addEventListener('keydown', (e) => { if(e.key === 'Enter') checkEditorPass(); });
+
+/* ============ QUADRO DE ATIVIDADES ============ */
+let modalContext = null; // {tri, subjectKey, label}
+let pendingPhotos = [];
+let editingActivityId = null;
+const activityPhotoIndexes = {};
+
+function compressImage(file, maxDim, quality){
+  maxDim = maxDim || 800; quality = quality || 0.75;
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = reject;
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onerror = reject;
+      img.onload = () => {
+        let w = img.width, h = img.height;
+        if(w > maxDim || h > maxDim){
+          if(w > h){ h = Math.round(h * maxDim / w); w = maxDim; }
+          else { w = Math.round(w * maxDim / h); h = maxDim; }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+async function openSubjectModal(tri, subjectKey, label){
+  modalContext = { tri, subjectKey, label };
+  editingActivityId = null;
+  pendingPhotos = [];
+  document.getElementById('modalTri').textContent = TRI_LABELS[tri];
+  document.getElementById('modalSubject').textContent = label;
+  document.getElementById('actTitle').value = '';
+  document.getElementById('actLink').value = '';
+  document.getElementById('actVideo').value = '';
+  document.getElementById('actPresentation').value = '';
+  document.getElementById('actDescription').value = '';
+  document.getElementById('actSkills').value = '';
+  document.getElementById('actPhotoPreview').innerHTML = '';
+  document.getElementById('actPhotos').value = '';
+  document.getElementById('addActivityBtn').textContent = 'Adicionar atividade';
+  document.getElementById('cancelActivityEdit').style.display = 'none';
+  document.querySelector('.modal-form').style.display = currentRole === 'editor' ? 'block' : 'none';
+  document.getElementById('subjectModal').classList.add('show');
+  await renderActivityList();
+}
+
+async function editActivity(id){
+  if(currentRole !== 'editor' || !modalContext) return;
+  const activities = await loadActivities(modalContext.tri, modalContext.subjectKey);
+  const activity = activities.find(item => item.id === id);
+  if(!activity) return;
+  editingActivityId = id;
+  document.getElementById('actTitle').value = activity.title || '';
+  document.getElementById('actLink').value = activity.link || '';
+  document.getElementById('actVideo').value = activity.video || '';
+  document.getElementById('actPresentation').value = activity.presentation || '';
+  document.getElementById('actDescription').value = activity.description || '';
+  document.getElementById('actSkills').value = (activity.skills || []).join(', ');
+  pendingPhotos = (activity.photos || []).slice();
+  renderPhotoPreview();
+  document.getElementById('addActivityBtn').textContent = 'Salvar alterações';
+  document.getElementById('cancelActivityEdit').style.display = 'inline-block';
+  document.querySelector('.modal-form').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function cancelActivityEdit(){
+  editingActivityId = null;
+  pendingPhotos = [];
+  document.getElementById('actTitle').value = '';
+  document.getElementById('actLink').value = '';
+  document.getElementById('actVideo').value = '';
+  document.getElementById('actPresentation').value = '';
+  document.getElementById('actDescription').value = '';
+  document.getElementById('actSkills').value = '';
+  document.getElementById('actPhotos').value = '';
+  document.getElementById('addActivityBtn').textContent = 'Adicionar atividade';
+  document.getElementById('cancelActivityEdit').style.display = 'none';
+  renderPhotoPreview();
+}
+
+function changeActivityPhoto(activityId, direction){
+  const currentIndex = activityPhotoIndexes[activityId] || 0;
+  activityPhotoIndexes[activityId] = Math.max(0, currentIndex + direction);
+  renderActivityList();
+}
+
+function getSafeHttpUrl(rawUrl){
+  try{
+    const url = new URL(rawUrl);
+    return url.protocol === 'http:' || url.protocol === 'https:' ? url.href : null;
+  }catch(e){
+    return null;
+  }
+}
+
+function getEmbeddedUrl(rawUrl, type){
+  if(!rawUrl) return null;
+  try{
+    const safeUrl = getSafeHttpUrl(rawUrl);
+    if(!safeUrl) return null;
+    const url = new URL(safeUrl);
+    const host = url.hostname.toLowerCase();
+    if(type === 'video'){
+      if(host === 'youtu.be') return `https://www.youtube-nocookie.com/embed/${url.pathname.slice(1)}`;
+      if(host === 'youtube.com' || host === 'www.youtube.com' || host === 'm.youtube.com'){
+        const videoId = url.searchParams.get('v') || url.pathname.match(/\/embed\/([^/]+)/)?.[1];
+        return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : null;
+      }
+      if(host === 'vimeo.com'){
+        const videoId = url.pathname.match(/\/(\d+)/)?.[1];
+        return videoId ? `https://player.vimeo.com/video/${videoId}` : null;
+      }
+      if(host === 'player.vimeo.com') return url.href;
+    }
+    if(type === 'presentation'){
+      if(host === 'docs.google.com' && url.pathname.includes('/presentation/')){
+        const presentationId = url.pathname.match(/\/presentation\/d\/([^/]+)/)?.[1];
+        return presentationId ? `https://docs.google.com/presentation/d/${presentationId}/embed` : null;
+      }
+      if(host === 'canva.com' || host === 'www.canva.com'){
+        return url.href.includes('?') ? `${url.href}&embed` : `${url.href}?embed`;
+      }
+    }
+  }catch(e){}
+  return null;
+}
+
+function renderEmbeddedMedia(rawUrl, label, type){
+  const safeUrl = getSafeHttpUrl(rawUrl);
+  if(!safeUrl) return '';
+  const embedUrl = getEmbeddedUrl(safeUrl, type);
+  if(!embedUrl) return `<div class="activity-media"><div class="activity-media-label">${label}</div><a class="activity-media-link" href="${safeUrl}" target="_blank" rel="noopener noreferrer">Abrir ${label.toLowerCase()}</a></div>`;
+  return `<div class="activity-media"><div class="activity-media-label">${label}</div><iframe src="${embedUrl}" title="${label}" loading="lazy" allowfullscreen></iframe></div>`;
+}
+
+function closeSubjectModal(){
+  document.getElementById('subjectModal').classList.remove('show');
+  refreshAllSubjectCards();
+  modalContext = null;
+  editingActivityId = null;
+}
+
+async function loadActivities(tri, subjectKey){
+  try{
+    const r = await storageGet('activities:'+tri+'-'+subjectKey);
+    return r && r.value ? JSON.parse(r.value) : [];
+  }catch(e){ return []; }
+}
+
+async function saveActivities(tri, subjectKey, arr){
+  await storageSet('activities:'+tri+'-'+subjectKey, JSON.stringify(arr));
+}
+
+async function renderActivityList(){
+  const list = document.getElementById('modalActivities');
+  const arr = await loadActivities(modalContext.tri, modalContext.subjectKey);
+  if(arr.length === 0){
+    list.innerHTML = '<p class="empty-activities">Nenhuma atividade adicionada ainda.</p>';
+    return;
+  }
+  list.innerHTML = arr.map(act => `
+    <div class="activity-card">
+      <div class="activity-side">
+        ${act.photos && act.photos.length ? (() => {
+          const photoIndex = Math.min(activityPhotoIndexes[act.id] || 0, act.photos.length - 1);
+          activityPhotoIndexes[act.id] = photoIndex;
+          return `<div class="activity-photos">
+            <img src="${act.photos[photoIndex]}" alt="Foto da atividade ${photoIndex + 1}">
+            ${act.photos.length > 1 ? `<button class="photo-nav prev" aria-label="Foto anterior" onclick="changeActivityPhoto('${act.id}', -1)">&#8249;</button><button class="photo-nav next" aria-label="Próxima foto" onclick="changeActivityPhoto('${act.id}', 1)">&#8250;</button><div class="photo-position">${photoIndex + 1} / ${act.photos.length}</div>` : ''}
+          </div>`;
+        })() : ''}
+        ${act.skills && act.skills.length ? `<div class="activity-skills">${act.skills.map(sk=>`<span>${sk}</span>`).join('')}</div>` : ''}
+      </div>
+      <div class="activity-side">
+        ${act.title ? `<h3 class="activity-title">${act.title}</h3>` : ''}
+        ${act.description ? `<p class="activity-desc">${act.description}</p>` : ''}
+        ${act.link ? `<a class="activity-link" href="${act.link}" target="_blank" rel="noopener noreferrer">Abrir link da atividade</a>` : ''}
+        ${renderEmbeddedMedia(act.video, 'Vídeo', 'video')}
+        ${renderEmbeddedMedia(act.presentation, 'Apresentação', 'presentation')}
+        ${currentRole === 'editor' ? `<button class="activity-edit" onclick="editActivity('${act.id}')">Editar atividade</button><button class="activity-delete" onclick="deleteActivity('${act.id}')">Remover</button>` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+async function deleteActivity(id){
+  const arr = await loadActivities(modalContext.tri, modalContext.subjectKey);
+  const filtered = arr.filter(a => a.id !== id);
+  await saveActivities(modalContext.tri, modalContext.subjectKey, filtered);
+  await renderActivityList();
+}
+
+document.getElementById('actPhotos').addEventListener('change', async (e) => {
+  const files = Array.from(e.target.files);
+  for(const file of files){
+    try{
+      const dataUrl = await compressImage(file);
+      pendingPhotos.push(dataUrl);
+    }catch(err){}
+  }
+  renderPhotoPreview();
+});
+
+function renderPhotoPreview(){
+  const wrap = document.getElementById('actPhotoPreview');
+  wrap.innerHTML = pendingPhotos.map((p, i) => `
+    <div class="thumb"><img src="${p}"><button class="rm" onclick="removePendingPhoto(${i})">✕</button></div>
+  `).join('');
+}
+function removePendingPhoto(i){ pendingPhotos.splice(i,1); renderPhotoPreview(); }
+
+document.getElementById('addActivityBtn').addEventListener('click', async () => {
+  const title = document.getElementById('actTitle').value.trim();
+  const link = document.getElementById('actLink').value.trim();
+  const video = document.getElementById('actVideo').value.trim();
+  const presentation = document.getElementById('actPresentation').value.trim();
+  const description = document.getElementById('actDescription').value.trim();
+  const skillsRaw = document.getElementById('actSkills').value.trim();
+  if(!title && !link && !video && !presentation && !description && pendingPhotos.length === 0 && !skillsRaw){
+    alert('Adicione ao menos uma foto, descrição ou habilidade.');
+    return;
+  }
+  const skills = skillsRaw ? skillsRaw.split(',').map(s=>s.trim()).filter(Boolean) : [];
+  const activity = { id: editingActivityId || Date.now().toString(), title, link, video, presentation, description, skills, photos: pendingPhotos.slice() };
+  try{
+    const arr = await loadActivities(modalContext.tri, modalContext.subjectKey);
+    if(editingActivityId){
+      const activityIndex = arr.findIndex(item => item.id === editingActivityId);
+      if(activityIndex !== -1) arr[activityIndex] = activity;
+    }else{
+      arr.push(activity);
+    }
+    await saveActivities(modalContext.tri, modalContext.subjectKey, arr);
+    cancelActivityEdit();
+    await renderActivityList();
+  }catch(e){
+    alert('Não foi possível salvar a atividade agora. Tente novamente.');
+  }
+});
+
+document.getElementById('cancelActivityEdit').addEventListener('click', cancelActivityEdit);
+
+loadContent();
+</script>
+</body>
+</html>
