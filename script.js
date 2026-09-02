@@ -10,6 +10,7 @@ const SUBJECTS = [
 ];
 const TRIMESTERS = ['tri1','tri2','tri3'];
 const TRI_LABELS = { tri1:'1º Trimestre', tri2:'2º Trimestre', tri3:'3º Trimestre' };
+const API_BASE = window.PORTFOLIO_API_URL || '';
 
 TRIMESTERS.forEach(tri => {
   const wrap = document.getElementById('subjects-' + tri);
@@ -36,12 +37,28 @@ TRIMESTERS.forEach(tri => {
 const editableTextIds = ['nameText','bioText','porqueText','estudosText','cEmail','cLocal','cInsta'];
 
 async function storageGet(key){
+  if(key.startsWith('activities:')){
+    const [tri, subject] = key.slice('activities:'.length).split('-');
+    const response = await fetch(`${API_BASE}/api/activities/${tri}/${subject}`);
+    if(!response.ok) throw new Error('Não foi possível carregar as atividades.');
+    return { value: JSON.stringify(await response.json()) };
+  }
   if(window.storage && typeof window.storage.get === 'function') return window.storage.get(key, true);
   const value = localStorage.getItem('portfolio:' + key);
   return value === null ? null : { value };
 }
 
 async function storageSet(key, value){
+  if(key.startsWith('activities:')){
+    const [tri, subject] = key.slice('activities:'.length).split('-');
+    const response = await fetch(`${API_BASE}/api/activities/${tri}/${subject}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'x-editor-token': EDITOR_PASSWORD },
+      body: value
+    });
+    if(!response.ok) throw new Error('Não foi possível salvar as atividades.');
+    return true;
+  }
   if(window.storage && typeof window.storage.set === 'function') return window.storage.set(key, value, true);
   localStorage.setItem('portfolio:' + key, value);
   return true;
