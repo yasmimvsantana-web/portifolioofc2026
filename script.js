@@ -10,6 +10,237 @@ const SUBJECTS = [
 ];
 const TRIMESTERS = ['tri1','tri2','tri3'];
 const TRI_LABELS = { tri1:'1º Trimestre', tri2:'2º Trimestre', tri3:'3º Trimestre' };
+const DEFAULT_ACTIVITIES = {
+  'tri1-matematica': [
+    {
+      id: 'matematica-tri1-quebrando-banca-analise',
+      title: 'Quebrando a Banca — Análise do Filme',
+      link: 'https://docs.google.com/document/d/1ZjQK5TQ5KeB0ISEi5LDO4EVnBgzKs_pTnWHvvM3JYUM/edit?usp=sharing',
+      video: '',
+      presentation: '',
+      description: 'Atividade de filme. Aplicar o pensamento probabilístico e estatístico através da análise do filme. A atividade explorou como a contagem de cartas pode ser usada para prever resultados em eventos aleatórios, além de exigir a criação de um roteiro original que utilize conceitos matemáticos como base da trama. Reflexão: "O filme mostra que o azar no cassino pode ser vencido com estratégia e controle emocional. Aprendi que a matemática é uma ferramenta de poder que, quando bem aplicada, permite prever riscos e tomar decisões mais inteligentes, tanto no jogo quanto na vida real."',
+      skills: ['C5', 'H30', 'H31'],
+      photos: []
+    },
+    {
+      id: 'matematica-tri1-jogo-quebrando-banca',
+      title: 'Jogo Quebrando a Banca',
+      link: 'https://www.canva.com/design/DAHHlZabhkA/7Y9Kqmqd7ymQA2wkbePH-A/view',
+      video: '',
+      presentation: 'https://www.canva.com/design/DAHHlZabhkA/7Y9Kqmqd7ymQA2wkbePH-A/view',
+      description: 'Criação de jogo. Desenvolver um jogo original que utilize Análise Combinatória e Probabilidade, inspirado na estratégia do filme Quebrando a Banca. O desafio incluiu criar regras, prototipar o jogo e testar a viabilidade matemática das apostas e estratégias de ganho. Reflexão: "Criamos um jogo que transforma fórmulas em decisões reais. Foi o momento de tirar o Princípio Fundamental da Contagem e as Permutações do papel para ver como eles ditam as chances de vitória."',
+      skills: ['C5', 'H30', 'H31'],
+      photos: []
+    }
+  ],
+  'tri2-matematica': [
+    {
+      id: 'matematica-tri2-tempo-tela',
+      title: 'Apresentação Estatística — Tempo de Tela x Exaustão Matinal',
+      link: 'https://docs.google.com/presentation/d/1TQP93z6lky2vZ-aQi3W0Vm57Z4gi0T1C1LmsqWLROPA/edit?usp=sharing',
+      video: '',
+      presentation: '',
+      description: 'Pesquisa estatística sobre a relação entre o tempo de tela durante a noite e a exaustão matinal de estudantes do Ensino Médio. Foram coletados e analisados dados, utilizando frequências, moda estatística e gráficos para apresentar os resultados. Reflexão: "A atividade foi interessante por relacionar a estatística a uma situação presente no cotidiano dos estudantes. Além de desenvolver conhecimentos matemáticos, possibilitou interpretar dados e refletir sobre os hábitos dos jovens."',
+      skills: ['C4', 'H27', 'H28', 'H29'],
+      photos: []
+    }
+  ],
+  'tri1-natureza': [
+    {
+      id: 'natureza-tri1-meme-evolucionismo',
+      title: 'Meme sobre Evolucionismo',
+      link: 'https://www.canva.com/design/DAHCVYJRHTI/iTMoqveN07zN8NphWVRJxw/view',
+      video: '',
+      presentation: 'https://www.canva.com/design/DAHCVYJRHTI/iTMoqveN07zN8NphWVRJxw/view',
+      description: 'Atividade criativa para explicar a evolução de forma criativa. Criar um arco-íris no qual Darwin reage com ironia a diferentes adaptações, fossilizando o comportamento humano atual. Reflexão: "O humor reside na ilusão de Darwin ao questionar se a seleção natural evoluiu para isso. Foi uma atividade divertida que me permitiu aplicar a teoria biológica de forma sarcástica, percebendo que a evolução nem sempre se parece com progresso quando observamos nossos hábitos modernos."',
+      skills: ['C3', 'H15', 'H18'],
+      photos: []
+    },
+    {
+      id: 'natureza-tri1-combustiveis-fosseis',
+      title: 'Se já sabemos que os combustíveis fósseis poluem, por que ainda usamos?',
+      link: 'https://www.canva.com/design/DAHE886JkV4/qRw-Yb2ym9rOJY0XrYvXOg/view',
+      video: '',
+      presentation: 'https://www.canva.com/design/DAHE886JkV4/qRw-Yb2ym9rOJY0XrYvXOg/view',
+      description: 'Apresentação. Analisar por que o mundo ainda não encontrou uma maneira de substituir os combustíveis fósseis. O foco foi compreender a alta densidade energética desses combustíveis e os desafios tecnológicos e estruturais que impedem uma transição rápida. Reflexão: "É preciso entender que setores como o de transportes e o industrial dependem de combustíveis fósseis porque estes fornecem muita energia por volume. Essa dependência é tanto técnica quanto econômica: a infraestrutura global ainda representa um grande obstáculo para as energias limpas."',
+      skills: ['C1', 'H1', 'C2', 'H9', 'H11'],
+      photos: []
+    },
+    {
+      id: 'natureza-tri1-disputa-eletricidade',
+      title: 'Disputa de Eletricidade',
+      link: 'https://docs.google.com/document/d/1tgqZuUlZjXz-Muvr2ctU7sftYVhTaL3dBd2NRCxo6i0/edit?usp=sharing',
+      video: '',
+      presentation: '',
+      description: 'Relatório de atividade prática. Analisar na prática os processos de eletrização por atrito e indução. O foco foi entender por que materiais condutores (metais) são atraídos por corpos eletrizados (cano) e como a escolha dos materiais influencia a quantidade de carga gerada. Reflexão: "Foi interessante observar a mágica da física acontecer: ao atritar o cano, criamos um desequilíbrio de elétrons que atraiu o metal por indução. Aprendi que a escolha do metal e do tipo de material para atrito é estratégica, pois a série triboelétrica define quem ganha ou perde mais carga."',
+      skills: ['C1', 'H1', 'C2', 'H7', 'H9', 'H11', 'H12'],
+      photos: []
+    }
+  ],
+  'tri2-natureza': [
+    {
+      id: 'natureza-tri2-mural-saude-ambiente',
+      title: 'Mural Interativo — Saúde Pública & Meio Ambiente',
+      link: '',
+      video: '',
+      presentation: '',
+      description: 'Atividade em grupo sobre impactos ambientais, saúde pública, saneamento básico e prevenção. A participação foi na elaboração de um formulário de perguntas, acessado pelos visitantes por meio de um QR Code. Reflexão: "A atividade foi interessante por unir pesquisa, tecnologia e conscientização, tornando a aprendizagem mais interativa. A participação na criação do formulário também permitiu contribuir de forma criativa para o trabalho em grupo."',
+      skills: ['C2', 'C11', 'C3', 'H15', 'H18', 'C4', 'H23'],
+      photos: [
+        'https://prtfoliodamo.netlify.app/img/mural_natureza_geral.jpg',
+        'https://prtfoliodamo.netlify.app/img/mural_natureza.png'
+      ]
+    },
+    {
+      id: 'natureza-tri2-estequiometria-industria',
+      title: 'Seminário sobre Estequiometria na Indústria',
+      link: 'https://docs.google.com/presentation/d/1hTpepTcqyh_MWB4pYwpJPJ8Qa6pa3b9nnobsZVRF0Sg/edit?usp=sharing',
+      video: '',
+      presentation: '',
+      description: 'Seminário e pesquisa sobre a produção de amônia e fertilizantes, abordando o processo Haber-Bosch e sua importância para a agricultura e a segurança alimentar. O trabalho também envolveu aspectos de estequiometria, impactos ambientais, sustentabilidade e dependência de matérias-primas. Reflexão: "A atividade foi interessante por relacionar a Química com a agricultura, a economia e questões ambientais. O estudo da amônia mostrou como os cálculos estequiométricos são importantes para a produção industrial e para o uso eficiente dos recursos."',
+      skills: ['C2', 'H6', 'H7', 'H9'],
+      photos: []
+    },
+    {
+      id: 'natureza-tri2-cartilha-eletricidade-corpo',
+      title: 'Cartilha — Eletricidade e o Corpo Humano',
+      link: 'https://www.canva.com/design/DAHS9bozRq8/6JN_2YmM6QKjPI4Vb5bYIA/view',
+      video: '',
+      presentation: 'https://www.canva.com/design/DAHS9bozRq8/6JN_2YmM6QKjPI4Vb5bYIA/view',
+      description: 'Cartilha informativa sobre a relação entre eletricidade e o corpo humano, abordando a condução de impulsos elétricos, os riscos de choques e formas de prevenção. Reflexão: "A atividade foi interessante por relacionar conceitos de Física com situações do cotidiano, permitindo compreender os efeitos da eletricidade no organismo e a importância de adotar medidas de segurança."',
+      skills: ['C1', 'H3', 'H4', 'C2', 'H12', 'C4', 'H13'],
+      photos: []
+    },
+    {
+      id: 'natureza-tri2-eletroquimica',
+      title: 'Portfólio Digital de Eletroquímica',
+      link: 'https://sites.google.com/estudante.sesisenai.org.br/gammy/eletroqu%C3%ADmica-no-enem',
+      video: '',
+      presentation: '',
+      description: 'Prática experimental de Eletroquímica, reunindo observações, hipóteses e resultados sobre as transformações de energia presentes nas reações químicas. Reflexão: "A atividade foi importante por aproximar a teoria da prática, permitindo observar os conceitos de Eletroquímica de forma experimental e desenvolver a capacidade de levantar hipóteses e analisar resultados."',
+      skills: ['C2', 'H7', 'H9', 'H11'],
+      photos: []
+    }
+  ],
+  'tri1-humanas': [
+    {
+      id: 'humanas-tri1-geopolitica',
+      title: 'Geopolítica',
+      link: 'https://www.canva.com/design/DAHBNNaCgWs/2ESptS_kLNnj_gVEoGNiSg/view',
+      video: '',
+      presentation: 'https://www.canva.com/design/DAHBNNaCgWs/2ESptS_kLNnj_gVEoGNiSg/view',
+      description: 'Pesquisa e apresentação detalhada sobre um país específico, coletando dados atualizados para permitir a comparação entre diferentes realidades nacionais. Reflexão: "Ao pesquisar os dados reais de uma nação, percebi que a geopolítica não é apenas sobre mapas, mas sobre como economia, localização e indicadores sociais definem o poder de um país no cenário mundial. Essa base de dados foi essencial para nos preparar para o seminário de comparação entre as nações."',
+      skills: ['C1', 'H1', 'H2', 'H3', 'H4', 'H5'],
+      photos: []
+    },
+    {
+      id: 'humanas-tri1-grande-guerra',
+      title: 'A Grande Guerra',
+      link: 'https://www.canva.com/design/DAHFtb6yBko/2SWn00G6YYWMpRfyGGa1UA/view',
+      video: '',
+      presentation: 'https://www.canva.com/design/DAHFtb6yBko/2SWn00G6YYWMpRfyGGa1UA/view',
+      description: 'Projeto de jornal histórico. Criar a capa de um jornal standard (75 × 60 cm) no estilo do início do século XX. O desafio foi atuar como um jornalista da época, escrevendo matérias autorais sobre a Grande Guerra e a Revolução Russa, respeitando o contexto político e a nacionalidade escolhida para o periódico. Reflexão: "Foi um exercício intenso de escrita e design histórico. Aprendi como o ponto de vista de um país altera a narrativa de um conflito e o quão denso era o jornalismo antes do domínio das imagens. Formatar tudo no Canva seguindo o padrão da época me ajudou a entender a comunicação como uma ferramenta geopolítica poderosa."',
+      skills: ['C3', 'H15', 'H16', 'H20', 'C6', 'H39'],
+      photos: []
+    },
+    {
+      id: 'humanas-tri1-imperialismo-congo',
+      title: 'Imperialismo no séc. XIX — Exploração do Congo',
+      link: 'https://docs.google.com/document/d/199PXoHD51BlJDaAf5dnx6gTPthP0X5F9WR1JoLoNMNg/edit?usp=sharing',
+      video: '',
+      presentation: '',
+      description: 'Trabalho escrito. Analisar como a Segunda Revolução Industrial impulsionou a corrida por colônias na África e Ásia. O trabalho consistiu em criar uma narrativa visual em 5 etapas sobre a história do Congo, desde o período pré-colonial até os dias atuais, focando nos impactos da exploração europeia. Reflexão: "Foi chocante compreender, através do exemplo do Congo, que a missão civilizadora europeia serviu apenas para mascarar um regime de exploração brutal. Aprendi que o desenvolvimento industrial das potências dependeu diretamente da violência colonial e que os problemas atuais do país são heranças dessa partilha forçada."',
+      skills: ['C2', 'H8', 'H10', 'H12'],
+      photos: []
+    }
+  ],
+  'tri2-humanas': [
+    {
+      id: 'humanas-tri2-fascismo-italiano',
+      title: 'Dossiê Histórico-Analítico — Fascismo Italiano',
+      link: 'https://www.canva.com/design/DAHOVO5kCHA/qy2Pg9ep1It-ai1nabor5w/view',
+      video: '',
+      presentation: 'https://www.canva.com/design/DAHOVO5kCHA/qy2Pg9ep1It-ai1nabor5w/view',
+      description: 'Pesquisa e dossiê produzido em dupla, com pesquisa bibliográfica e análise de uma fonte histórica primária para compreender o contexto e os impactos do Fascismo Italiano. Reflexão: "A atividade foi importante por estimular a pesquisa e a análise crítica de fontes históricas, permitindo compreender o Fascismo além dos acontecimentos, considerando também seus interesses, consequências e a visão dos contemporâneos."',
+      skills: [],
+      photos: []
+    },
+    {
+      id: 'humanas-tri2-maze-runner',
+      title: 'Apresentação: Totalitarismo no Cinema — Maze Runner',
+      link: 'https://www.canva.com/design/DAHKN-Gc3hQ/quRFOhe7i4a8viN8HV2qhA/view',
+      video: '',
+      presentation: 'https://www.canva.com/design/DAHKN-Gc3hQ/quRFOhe7i4a8viN8HV2qhA/view',
+      description: 'Análise do filme Maze Runner, relacionando cenas, falas e comportamentos com as características dos regimes totalitários estudadas em aula. Reflexão: "A atividade foi interessante por utilizar o cinema como forma de compreender e interpretar conceitos históricos, tornando o conteúdo mais próximo e facilitando a identificação de práticas de controle e poder."',
+      skills: ['H10', 'H22', 'H26', 'H27'],
+      photos: []
+    },
+    {
+      id: 'humanas-tri2-isto-um-homem',
+      title: 'É Isto um Homem? — Desumanização e Pessoas em Situação de Rua',
+      link: 'https://www.canva.com/design/DAHNS7Rp3sc/rLCu-9ROec24oQhtwYrhBQ/view',
+      video: '',
+      presentation: 'https://www.canva.com/design/DAHNS7Rp3sc/rLCu-9ROec24oQhtwYrhBQ/view',
+      description: 'Análise que relaciona a leitura de Primo Levi e a desumanização no Holocausto com a realidade das pessoas em situação de rua. Por meio de reportagens, dados e fontes acadêmicas, foram analisados preconceitos e discursos que negam a dignidade desse grupo. Reflexão: "A pesquisa me fez perceber que a desumanização ainda está presente na sociedade atual. Muitas vezes, julgamos pessoas em situação de rua sem compreender suas histórias, o que reforça sua exclusão e invisibilidade."',
+      skills: ['H10', 'H22', 'H26', 'H27'],
+      photos: []
+    }
+  ],
+  'tri1-linguagens': [
+    {
+      id: 'linguagens-tri1-paixao-gh',
+      title: 'A Paixão de G.H.',
+      link: 'https://www.canva.com/design/DAHGfutPX7E/EejBasKT7JZJ2rBsrAmC0w/view',
+      video: '',
+      presentation: 'https://www.canva.com/design/DAHFCgcj82o/swzynf_V_P_vGalfOEu1ng/view',
+      description: 'Habilidades: H4 e H22. Analisar o livro "A Paixão Segundo G.H." pela ótica da Sociologia. A atividade consistiu em apresentar uma mini-aula e criar um mapa conceitual explicando como a invisibilidade das classes sociais e a construção do "nojo" justificam o comportamento da personagem. Reflexão: "Gostei da atividade, pois me ajudou a entender que o surto de G.H. foi, na verdade, a quebra de sua bolha de privilégios. Foi muito interessante notar como o conceito de imundo é inventado pela sociedade para manter as classes sociais separadas."',
+      skills: ['H4', 'H22'],
+      photos: []
+    },
+    {
+      id: 'linguagens-tri1-game-literario',
+      title: 'Game Literário',
+      link: 'https://www.canva.com/design/DAHHtGdUNfc/3PL5a4eZF0P7vcvBuJn_IA/view',
+      video: '',
+      presentation: '',
+      description: 'Habilidade: H15. Revisar as escolas literárias brasileiras, do Quinhentismo ao Simbolismo, por meio da pesquisa e da criação de um jogo digital no Wordwall, desenvolvendo conhecimento, organização de ideias, criatividade e trabalho em grupo. Reflexão: "Gostei da atividade, pois foi uma forma diferente e mais dinâmica de aprender literatura. Criar o jogo ajudou a fixar melhor o conteúdo e tornou o estudo mais interessante e interativo."',
+      skills: ['H15'],
+      photos: []
+    }
+  ],
+  'tri2-linguagens': [
+    {
+      id: 'linguagens-tri2-videomanifesto',
+      title: 'Videomanifesto Modernista',
+      link: 'https://www.youtube.com/watch?v=O736ISMCq7s',
+      video: 'https://www.youtube.com/watch?v=O736ISMCq7s',
+      presentation: '',
+      description: 'Atividade em grupo. Habilidades: H3 e H24. A proposta foi criar um videomanifesto sobre um tema atual, apresentando uma opinião com argumentos e criatividade, inspirado nas características dos manifestos modernistas. Reflexão: "Achei a atividade interessante e criativa, pois permite aprender sobre o Modernismo de uma forma diferente. Também ajuda a desenvolver a argumentação, a criatividade e o trabalho em equipe."',
+      skills: ['H3', 'H24'],
+      photos: []
+    },
+    {
+      id: 'linguagens-tri2-favorite-artist',
+      title: 'Favorite Artist, Movie & Song',
+      link: 'https://docs.google.com/document/d/1HbWPGETB7_Oilm4NgDBGeQ7WOvAR9ApiIbJO3o-AfiA/edit?usp=sharing',
+      video: '',
+      presentation: '',
+      description: 'Produção textual em inglês. Habilidade: H25. Produção de um texto em inglês sobre um artista, um filme e uma música favoritos, com pesquisa de informações e explicação da importância pessoal de cada escolha. A atividade também trabalhou o Simple Past. Reflexão: "A atividade foi interessante por relacionar o inglês aos gostos pessoais dos alunos, tornando o aprendizado mais dinâmico. Porém, poderia incluir uma apresentação oral para estimular também a comunicação em inglês."',
+      skills: ['H25'],
+      photos: []
+    },
+    {
+      id: 'linguagens-tri2-autodiagnostico',
+      title: 'Dissertação — Autodiagnóstico nas Redes Sociais',
+      link: '',
+      video: '',
+      presentation: '',
+      description: 'Redação ENEM. Habilidade: H22. Produção de uma redação sobre os perigos do autodiagnóstico de transtornos mentais nas redes sociais no Brasil, desenvolvendo argumentação e reflexão sobre um tema atual e relevante. Reflexão: "A atividade foi importante por abordar um problema presente no cotidiano, incentivando uma visão crítica sobre o uso das redes sociais e a saúde mental. O tema também permitiu desenvolver a capacidade de argumentação e conscientização."',
+      skills: ['H22'],
+      photos: []
+    }
+  ]
+};
 const API_BASE = window.PORTFOLIO_API_URL || '';
 
 TRIMESTERS.forEach(tri => {
@@ -38,10 +269,19 @@ const editableTextIds = ['nameText','bioText','porqueText','estudosText','cEmail
 
 async function storageGet(key){
   if(key.startsWith('activities:')){
+    const localValue = localStorage.getItem('portfolio:' + key);
+    if(localValue !== null) return { value: localValue };
     const [tri, subject] = key.slice('activities:'.length).split('-');
-    const response = await fetch(`${API_BASE}/api/activities/${tri}/${subject}`);
-    if(!response.ok) throw new Error('Não foi possível carregar as atividades.');
-    return { value: JSON.stringify(await response.json()) };
+    try{
+      const response = await fetch(`${API_BASE}/api/activities/${tri}/${subject}`);
+      if(!response.ok) throw new Error('Não foi possível carregar as atividades.');
+      const activities = await response.json();
+      return { value: JSON.stringify(activities.length ? activities : DEFAULT_ACTIVITIES[`${tri}-${subject}`] || []) };
+    }catch(error){
+      const defaults = DEFAULT_ACTIVITIES[`${tri}-${subject}`];
+      if(defaults) return { value: JSON.stringify(defaults) };
+      throw error;
+    }
   }
   if(window.storage && typeof window.storage.get === 'function') return window.storage.get(key, true);
   const value = localStorage.getItem('portfolio:' + key);
@@ -50,13 +290,15 @@ async function storageGet(key){
 
 async function storageSet(key, value){
   if(key.startsWith('activities:')){
+    localStorage.setItem('portfolio:' + key, value);
     const [tri, subject] = key.slice('activities:'.length).split('-');
-    const response = await fetch(`${API_BASE}/api/activities/${tri}/${subject}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json', 'x-editor-token': EDITOR_PASSWORD },
-      body: value
-    });
-    if(!response.ok) throw new Error('Não foi possível salvar as atividades.');
+    try{
+      await fetch(`${API_BASE}/api/activities/${tri}/${subject}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'x-editor-token': EDITOR_PASSWORD },
+        body: value
+      });
+    }catch(error){}
     return true;
   }
   if(window.storage && typeof window.storage.set === 'function') return window.storage.set(key, value, true);
